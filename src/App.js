@@ -83,8 +83,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>HI, I'm a React App</h1>
-        <button style={style} onClick={this.showPersons}>
+        <h1 className={this.state.persons.length < 2 ? 'red' : 'bold'}>HI, I'm a React App</h1>
+        <button className="mainBtn" onClick={this.showPersons}>
           Show/Hide
         </button>
 
