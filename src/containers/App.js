@@ -1,7 +1,8 @@
 import React, { Component, useState } from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
-import Person from "./Person/Person.js";
+import Persons from "../components/Persons/Persons";
+import FlightDeck from "../components/FlightDeck/FlightDeck";
 
 class App extends Component {
   state = {
@@ -66,27 +67,21 @@ class App extends Component {
     if (this.state.personView) {
       persons = (
         <div>
-          {this.state.persons.map((person, i) => {
-            return (
-              <Person
-                key={person.id}
-                name={person.name}
-                age={person.age}
-                changed={event => this.switchNameHandler(event, person.id)}
-                click={() => this.deletMe(i)}
-              />
-            );
-          })}
+          <Persons
+            persons={this.state.persons}
+            changed={this.switchNameHandler}
+            delete={this.deletMe}
+          />
         </div>
       );
     }
 
     return (
       <div className="App">
-        <h1 className={this.state.persons.length < 2 ? 'red' : 'bold'}>HI, I'm a React App</h1>
-        <button className="mainBtn" onClick={this.showPersons}>
-          Show/Hide
-        </button>
+        <FlightDeck
+          showPersons={this.showPersons}
+          persons={this.state.persons}
+        />
 
         {persons}
       </div>
